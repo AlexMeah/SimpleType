@@ -98,12 +98,13 @@ $('#clear').on('click', function (e) {
 });
 
 //Show hide button
-content.on('focus', function() {
-    hideCon.animate({'opacity': 1}, 300);
+content.on('mouseenter', function() {
+    hideCon.stop().animate({'opacity': 1}, 300);
 });
-content.on('blur', function() {
-    hideCon.animate({'opacity': 0}, 300);
+content.on('mouseleave', function() {
+    hideCon.stop().animate({'opacity': 0}, 300);
 });
+
 
 //Mute Button
 document.getElementById('mute').addEventListener('click', function (e)
