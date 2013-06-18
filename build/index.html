@@ -20,10 +20,14 @@
             </div>
             <div id="controls" class="transitionable">
                 <label for="title">Title</label>
-                <input id="title" name="title" type="text">
+                <input id="title" name="title" type="text" class="transitionable">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" type="text"></textarea>
-                <a href="#" id="save" class="btn btn-primary">Save</a>
+                <textarea id="description" name="description" type="text" class="transitionable"></textarea>
+                <div class="clearfix">
+                    <a href="#" id="save" class="btn btn-primary">Save</a>
+                    <a href="#" id="clear" class="btn btn-primary">Clear</a>
+                </div>
+                <a href="#" class="icon-btn fullscreen-but" data-fullscreen="" title="Enter fullscreen"><i class="icon-fullscreen"></i></a>
                 <a href="#" id="mute" class="icon-btn"><i class="icon-mute"></i></a>
                 <audio id="audio" preload="auto">
                     <source src="audio/click.mp3" type="audio/mp3">

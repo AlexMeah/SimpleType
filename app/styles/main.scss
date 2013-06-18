@@ -19,7 +19,7 @@ body {
     margin: 0;
     background: #eee;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.3;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #555555;
 }
@@ -43,10 +43,14 @@ label {
 }
 
 input, textarea {
+    font-size: 14px;
+    line-height: 1.3;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 5px;
     width: 100%;
     margin-bottom: 10px;
     outline-style: none;
+    border: 1px solid #1abc9c;
 
     &:focus {
         border: 1px solid #1abc9c;
@@ -146,10 +150,19 @@ CLEARFIXIN'
         #description {
             min-height: 150px;
             resize: none;
+            overflow: hidden;
         }
 
         #save {
-            display: block;
+            display: inline-block;
+            width: 145px;
+            margin-right: 5px;
+        }
+
+        #clear {
+            display: inline-block;
+            width: 145px;
+            margin-left:  5px;
         }
     }
 }
