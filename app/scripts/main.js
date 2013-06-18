@@ -33,7 +33,8 @@ if (!document.fullscreenElement &&    // alternative standard method
 }
 
 //Animate sidebar using best available method
-function toggleSidebar() {
+function toggleSidebar(e) {
+    e.preventDefault();
     $('.icon-toggle').toggleClass('active');
     if(Modernizr.csstransitions) {
         cons.toggleClass('hide-controls'),
