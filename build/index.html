@@ -1,0 +1,37 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>SimpleType by Alex Meah</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="styles/main.css">
+        <script src="scripts/scripts/vendor/modernizr.js"></script>
+    </head>
+    <body>
+        <div class="container clearfix">
+            <div id="notepad" class="transitionable">
+                <div id="content" contenteditable="true"></div>
+                <a href="#" id="hide-controls" class="icon-btn"><i class="icon-toggle"></i></a>
+            </div>
+            <div id="controls" class="transitionable">
+                <label for="title">Title</label>
+                <input id="title" name="title" type="text">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" type="text"></textarea>
+                <a href="#" id="save" class="btn btn-primary">Save</a>
+                <a href="#" id="mute" class="icon-btn"><i class="icon-mute"></i></a>
+                <audio id="audio" preload="auto">
+                    <source src="audio/click.mp3" type="audio/mp3">
+                    <source src="audio/click.ogg" type="audio/ogg">
+                </source></source></audio>
+            </div>
+        </div>
+
+        <script src="scripts/main.js"></script>
+</body>
+</html>
