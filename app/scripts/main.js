@@ -11,7 +11,7 @@ var winH = $(window).height(),
 
 //Toggle Fullscreen using required prefix
 function toggleFullScreen() {
-    $('.fullscreen-but').find('i').toggleClass('active');
+    fullBut.find('i').toggleClass('active');
 if (!document.fullscreenElement &&    // alternative standard method
 !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
     if (document.documentElement.requestFullscreen) {
