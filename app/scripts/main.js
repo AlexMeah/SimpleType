@@ -1,12 +1,16 @@
 // Vars + Cached Els
 var winH = $(window).height(),
+    winW = $(window).width(),
     notepad = $('#notepad'),
     content = $('#content'),
     hideCon = $('#hide-controls'),
     cons = $('#controls'),
     mute = $('#mute'),
     fullBut = $('[data-fullscreen]'),
-    sound = null;
+    sound = null,
+    title =  localStorage.getItem('title') || $('#title').val(),
+    description,
+    contentbody = "Why you saving blank files fool.";
 
 
 //Toggle Fullscreen using required prefix
@@ -55,17 +59,38 @@ function toggleSidebar(e) {
     }
 }
 
+function shout(html) {
+    var overlay = '<div id="modal-bg"></div>';
+
+    //Add Background
+    $('body').append(overlay),
+    $('#modal-bg').after('<div id="alert">' + html + '<a href="#" class="btn btn-primary" data-dismiss-modal>Ok</a></div>');
+
+    var el = $('#alert'),
+        elW = el.width();
+            //Animate visibility from top
+            el.css('margin-left', '-'+elW/2+'px').stop().animate({ top: 300}, 300);
+
+    $('[data-dismiss-modal]').on('click', function(event) {
+        event.preventDefault();
+        $('#alert').stop().animate({top: '100%'}, 300, function() {
+            $('#modal-bg').remove(),
+            $('#alert').remove();
+        });
+    });
+}
+
 function isPlaying(audelem) { return !audelem.paused; }
 
 $(document).ready( function() {
 
 //Enable fullscreen support in supported browsers
-$('[data-fullscreen]').on('click', function(e) {
+fullBut.on('click', function(e) {
     e.preventDefault();
     if(Modernizr.fullscreen) {
         toggleFullScreen();
     } else {
-        alert('Sorry your browser does not support this feature, to enter fullscreen manually please press F11.');
+        shout('Sorry, your browser does not support this feature, to enter fullscreen manually please press F11.');
     }
 });
 
@@ -79,15 +104,18 @@ populate();
 
 //Set localStorage
 $('#title').on('keyup', function () {
-    localStorage.setItem('title', $(this).val());
+    title = $(this).val();
+    localStorage.setItem('title', title);
     localStorage.setItem('timestamp', (new Date()).getTime());
 });
 $('#description').on('keyup', function () {
-    localStorage.setItem('description', $(this).val());
+    description = $(this).val();
+    localStorage.setItem('description', description);
     localStorage.setItem('timestamp', (new Date()).getTime());
 });
 $('#content').on('keyup', function () {
-    localStorage.setItem('content', $(this).text());
+    contentbody = $(this).text();
+    localStorage.setItem('content', contentbody);
     localStorage.setItem('timestamp', (new Date()).getTime());
 });
 
@@ -108,13 +136,12 @@ content.on('mouseleave', function() {
 
 
 //Mute Button
-document.getElementById('mute').addEventListener('click', function (e)
-{
+$('#mute').on('click', function (e) {
     e = e || window.event;
     sound.muted = !sound.muted;
     e.preventDefault();
     $(this).find('i').toggleClass('active');
-}, false);
+});
 
 //Play on keypress
 sound = document.getElementsByTagName('audio')[0];
@@ -132,13 +159,15 @@ hideCon.on('click', toggleSidebar);
 //Save function
 $('#save').on('click', function(e) {
     e.preventDefault();
-    if($('#title').val()) {
+    if(title.length) {
         if(Modernizr.blobconstructor) {
-            var file = new Blob([content.text()], {type: "text/plain;charset=utf-8"});
-            saveAs(file, $('#title').val()+'.txt');
+            var file = new Blob([contentbody], {type: "text/plain;charset=utf-8"});
+            saveAs(file, title+'.txt');
         } else {
-            alert('Sorry, for the alert. Your browser does not support this feature.');
+            shout('Sorry, your browser does not support this feature.');
         }
+    } else {
+        shout('Please enter a title.')
     }
 });
 });
